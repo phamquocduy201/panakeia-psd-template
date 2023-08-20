@@ -1,0 +1,95 @@
+@mixin absoluteCenter($d: "both",$type: absolute) {
+  position: $type;
+  @if $d == "both" {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  @if $d == "top" {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $d == "left" {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+
+@mixin maxWidth($breakPoint) {
+  @media screen and (max-width: $breakPoint) {
+    @content
+  }
+}
+
+@mixin minWidth($breakPoint) {
+  @media screen and (min-width: $breakPoint) {
+    @content
+  }
+}
+
+@mixin absoluteFull() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include size(100%);
+}
+
+@mixin textClamp($lineClam: 1,$lineHeight: 1.5, $size: 100%) {
+  width: $size;
+  max-width: $size;
+  overflow: hidden;
+  @if $lineClam > 1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lineClam;
+    word-break: break-word;
+    line-height: $lineHeight;
+  }
+  @else {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@mixin flexbox($config: ()) {
+  $config: extend(
+    (
+      align-items: stretch, 
+      justify-content: flex-start, 
+      flex-direction: row, 
+      display: flex, 
+      flex-wrap: nowrap
+    ),
+    $config
+  );
+
+  display: map-get($config, display);
+  align-items: map-get($config, align-items);
+  justify-content: map-get($config, justify-content);
+  flex-direction: map-get($config, flex-direction);
+  flex-wrap: map-get($config, flex-wrap);
+}
+
+@mixin posFull($config: ()) {
+  $config: extend(
+    (
+      position: absolute,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    ),
+    $config
+  );
+
+  position: map-get($config,position);
+  top: map-get($config,top);
+  left: map-get($config,left);
+  right: map-get($config,right);
+  bottom: map-get($config,bottom);
+}

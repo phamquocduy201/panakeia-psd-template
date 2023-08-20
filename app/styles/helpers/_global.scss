@@ -1,0 +1,28 @@
+body {
+  font-family: $primary-font;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+}
+
+input, button {
+  font-family: $primary-font;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}

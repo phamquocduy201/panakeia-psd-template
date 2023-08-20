@@ -1,0 +1,124 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $navbar-height;
+  background-color: $bg-color;
+  transition: transform 0.3s ease-in-out;
+  z-index: 2;
+  &.navbar-hidden {
+    transform: translateY(-100%);
+  }
+  .container {
+    height: 100%;
+    @include flexbox((
+      align-items: center,
+      justify-content: space-between
+    ));
+  }
+  &-left {
+    span {
+      display: block;
+      font-size: 1.6rem;
+      color: $brick-color;
+      &:first-of-type {
+        font-size: 3.6rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: $title-color;
+      }
+    }
+  }
+  &-toggle {
+    @include size(2.5rem);
+    @include flexbox((
+      flex-direction: column,
+      justify-content: space-between,
+    ));
+    position: relative;
+    display: none;
+    &::before {
+      content: "";
+      @include posFull;
+      background-color: transparent;
+    }
+    &-item {
+      @include size(100%, 4px);
+      background-color: #000;
+      border-radius: 1rem;
+      transition: all 0.15s linear;
+      &.toggle-item-1, &.toggle-item-3 {
+        width: 33px;
+      }
+      &.toggle-item-1 {
+        transform: translate(-13%, 276%) rotate(45deg);
+      }
+      &.toggle-item-2 {
+        opacity: 0;
+        visibility: hidden;
+      }
+      &.toggle-item-3 {
+        transform: translate(-13%, -257%) rotate(-45deg);
+      }
+    }
+  }
+  &-menu {
+    @include flexbox((
+      align-items: center
+    ));
+    transition: all 0.3s ease;
+    &.is-expand {
+      transform: translateX(0);
+    }
+    &-item-link {
+      display: inline-block;
+      width: 100%;
+      padding: 1rem 2rem;
+      border-radius: 3rem;
+      font-size: 1.8rem;
+      color: $title-color;
+      transition: all 0.1s linear;
+      &:hover {
+        background-color: $brick-color;
+        color: #fff;
+      }
+    }
+  }
+  @include maxWidth(1023px) {
+    &-toggle {
+      display: flex;
+    }
+    &-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 50%;
+      z-index: 10;
+      background-color: #000;
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translateX(-100%);
+      &-item {
+        width: 100%;
+      }
+      &-item-link {
+        padding: 2rem 3rem;
+        color: #fff;
+      }
+    }
+  }
+  @include maxWidth(767px) {
+    height: 80px;
+    &-menu {
+      right: 20%;
+    }
+    &-left {
+      font-size: 1.4rem;
+      span:first-of-type {
+        font-size: 2.5rem;
+      }
+    } 
+  }
+}
