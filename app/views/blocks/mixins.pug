@@ -1,5 +1,8 @@
-mixin headerItem(data)
-  li.header-item
-    img(src= data.src).header-list-item-img
-    span.header-list-item-title= data.title
-    p.header-list-item-desc= data.desc
+mixin item(data)
+  li.item
+    .item-img
+      img(src= data.src)
+    span.item-title= data.title
+    p.item-desc= data.desc
+    if(block)
+      block 
